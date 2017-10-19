@@ -1,3 +1,23 @@
+<?php
+include_once("php/conectardb.php");
+include_once("php/userClass.php");
+
+$userClass = new userClass();
+
+
+if(!empty($_POST['signupCliente'])){
+	$cpf = $_POST['cpfReg'];
+	$nome = $_POST['nomeReg'];
+	$telefone = $_POST['telefoneReg'];
+	$cep = $_POST['cepReg'];
+	$bairro = $_POST['bairroReg'];
+	$cidade = $_POST['cidadeReg'];
+	$rua = $_POST['ruaReg'];
+	$estado = $_POST['estadoReg'];
+}
+
+?>
+
 <!DOCTYPE html>
 <html >
 <head>
@@ -24,112 +44,148 @@
         	<div id="cliente">   
           		<h1>Cliente</h1>
         		<ul class="tab-group">
-        			<li class="tab active"><a href="#cliente">Cliente</a></li>
+        			<li class="tab"><a href="#cliente">Cliente</a></li>
         			<li class="tab"><a href="#cassino">Cassino</a></li>
         			<li class="tab"><a href="#cj">Comissão de Jogos</a></li>
       			</ul>
 	        	<form action="" method="post" name="signup">
 	          		
-		        	<div id="cliente" class="field-wrap">
+		        	<div class="field-wrap">
 		            	<label>
 		                	CPF<span class="req">*</span>
 		            	</label>
-		        		<input type="text" name="usernameReg" required autocomplete="off" />
+		        		<input type="text" name="cpfReg" required autocomplete="off" />
 		        	</div>
 
 			        <div class="field-wrap">
 			            <label>
 			            	Nome<span class="req">*</span>
 			            </label>
-			            <input type="email" name="emailReg" required autocomplete="off"/>
+			            <input type="text" name="nomeReg" required autocomplete="off"/>
 			        </div>
 			          
 			        <div class="field-wrap">
 			            <label>
 			            	Telefone<span class="req">*</span>
 			        	</label>
-			        	<input type="password" name="passwordReg" required autocomplete="off"/>
+			        	<input type="text" name="telefoneReg" required autocomplete="off"/>
 			        </div>
 			          
 			        <div class="field-wrap">
 			            <label>
 			            	CEP<span class="req">*</span>
 			        	</label>
-			        	<input type="password" name="passwordReg" required autocomplete="off"/>
+			        	<input type="text" name="cepReg" required autocomplete="off"/>
 			        </div>
 			         
 			        <div class="field-wrap">
 			            <label>
 			            	Bairro<span class="req">*</span>
 			        	</label>
-			        	<input type="password" name="passwordReg" required autocomplete="off"/>
+			        	<input type="text" name="bairroReg" required autocomplete="off"/>
 			        </div>
 
 			        <div class="field-wrap">
 			            <label>
 			            	Cidade<span class="req">*</span>
 			        	</label>
-			        	<input type="password" name="passwordReg" required autocomplete="off"/>
+			        	<input type="text" name="cidadeReg" required autocomplete="off"/>
 			        </div>
 
 			        <div class="field-wrap">
 			            <label>
 			            	Rua<span class="req">*</span>
 			        	</label>
-			        	<input type="password" name="passwordReg" required autocomplete="off"/>
+			        	<input type="text" name="ruaReg" required autocomplete="off"/>
 			        </div>
 
-			        <button type="submit" class="button button-block" name="signupSubmit" value="Signup"/>Cadastrar</button>
+			        <div class="field-wrap">
+			            <label>
+			            	Estado<span class="req">*</span>
+			        	</label>
+			        	<input type="text" name="estadoReg" required autocomplete="off"/>
+			        </div>
+
+			        <button type="submit" class="button button-block" name="signupCliente" value="Signup"/>Cadastrar</button>
 		          
 	        	</form>
-        	</div> <!-- signup -->
+        	</div> <!-- cliente -->
         
 	        <div id="cj">   
 	        	<h1>Comissão de Jogos</h1>
 	          	<ul class="tab-group">
-        			<li class="tab active"><a href="#cliente">Cliente</a></li>
+        			<li class="tab"><a href="#cliente">Cliente</a></li>
         			<li class="tab"><a href="#cassino">Cassino</a></li>
         			<li class="tab"><a href="#cj">Comissão de Jogos</a></li>
       			</ul>
-	        	<form action="" method="post" name="login">
+	        	<form action="" method="post" name="signup">
 	          
 	            	<div class="field-wrap">
 	            		<label>
 	            			Razão Social<span class="req">*</span>
 	            		</label>
-	            		<input type="email" name="email" required autocomplete="off"/>
+	            		<input type="text" name="email" required autocomplete="off"/>
 	          		</div>
 	          
-	          		<button class="button button-block" name="loginSubmit" value="Login"/>Entrar</button>
+	          		<button type="submit" class="button button-block" name="signupSubmit" value="Signup"/>Cadastrar</button>
 	          
 	          	</form>
 
-	        </div> <!-- login -->
+	        </div> <!-- cj -->
 
 	        <div id="cassino">   
 	        	<h1>Cassino</h1>
 	          	<ul class="tab-group">
-        			<li class="tab active"><a href="#cliente">Cliente</a></li>
+        			<li class="tab"><a href="#cliente">Cliente</a></li>
         			<li class="tab"><a href="#cassino">Cassino</a></li>
         			<li class="tab"><a href="#cj">Comissão de Jogos</a></li>
       			</ul>
-	        	<form action="" method="post" name="login">
+	        	<form action="" method="post" name="signup">
 	          
 	            	<div class="field-wrap">
 	            		<label>
-	            			Email<span class="req">*</span>
+	            			Nome<span class="req">*</span>
 	            		</label>
-	            		<input type="email" name="email" required autocomplete="off"/>
+	            		<input type="text" name="nomeReg" required autocomplete="off"/>
 	          		</div>
 	          
 	          		<div class="field-wrap">
 	            		<label>
-	              			Senha<span class="req">*</span>
+	              			Comissão de Jogos<span class="req">*</span>
 	            		</label>
-	            		<input type="password" name="password" required autocomplete="off"/>
+	            		<input type="text" name="cjReg" required autocomplete="off"/>
 	          		</div>
-	          
-	          		<button class="button button-block" name="loginSubmit" value="Login"/>Entrar</button>
+	          		
+
+	          		<div class="field-wrap">
+		            	<label>
+		                	CEP<span class="req">*</span>
+		            	</label>
+		        		<input type="text" name="cepReg" required autocomplete="off" />
+		        	</div>
+
+		        	<div class="field-wrap">
+		            	<label>
+		                	Bairro<span class="req">*</span>
+		            	</label>
+		        		<input type="text" name="bairroReg" required autocomplete="off" />
+		        	</div>
+
+		        	<div class="field-wrap">
+			            <label>
+			            	Cidade<span class="req">*</span>
+			        	</label>
+			        	<input type="text" name="cidadeReg" required autocomplete="off"/>
+			        </div>
+
+			        <div class="field-wrap">
+			            <label>
+			            	Rua<span class="req">*</span>
+			        	</label>
+			        	<input type="text" name="ruaReg" required autocomplete="off"/>
+			        </div>
+
+	          		<button type="submit" class="button button-block" name="signupSubmit" value="Signup"/>Cadastrar</button>
 	          
 	          	</form>
 
