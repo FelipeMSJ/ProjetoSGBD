@@ -1,20 +1,5 @@
 <?php
 include_once("php/conectardb.php");
-include_once("php/userClass.php");
-
-$userClass = new userClass();
-
-
-if(!empty($_POST['signupCliente'])){
-	$cpf = $_POST['cpfReg'];
-	$nome = $_POST['nomeReg'];
-	$telefone = $_POST['telefoneReg'];
-	$cep = $_POST['cepReg'];
-	$bairro = $_POST['bairroReg'];
-	$cidade = $_POST['cidadeReg'];
-	$rua = $_POST['ruaReg'];
-	$estado = $_POST['estadoReg'];
-}
 
 ?>
 
@@ -48,7 +33,7 @@ if(!empty($_POST['signupCliente'])){
         			<li class="tab"><a href="#cassino">Cassino</a></li>
         			<li class="tab"><a href="#cj">Comissão de Jogos</a></li>
       			</ul>
-	        	<form action="" method="post" name="signup">
+	        	<form action="php/userClass.php" method="POST" name="signup">
 	          		
 		        	<div class="field-wrap">
 		            	<label>
@@ -124,10 +109,10 @@ if(!empty($_POST['signupCliente'])){
 	            		<label>
 	            			Razão Social<span class="req">*</span>
 	            		</label>
-	            		<input type="text" name="email" required autocomplete="off"/>
+	            		<input type="text" id="razao_social" name="razao_social" required autocomplete="off"/>
 	          		</div>
 	          
-	          		<button type="submit" class="button button-block" name="signupSubmit" value="Signup"/>Cadastrar</button>
+	          		<button type="submit" class="button button-block" name="signupCJ" value="Signup"/>Cadastrar</button>
 	          
 	          	</form>
 

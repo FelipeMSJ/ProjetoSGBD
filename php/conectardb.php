@@ -2,7 +2,7 @@
 	session_start();
 
 	/* DATABASE CONFIGURATION */
-	define('host', 'localhost');
+	define('host', 'localhost:8080');
 	define('login', 'root');
 	define('senha', '');
 	define('db', 'cassino_db');
