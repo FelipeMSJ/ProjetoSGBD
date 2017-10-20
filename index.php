@@ -2,14 +2,15 @@
 include_once("php/conectardb.php");
 
 $con = getDB();
-$cj_select = "SELECT razao_social from comissao_jogos";
-$result_cj = $con->query($cj_select);
-$rows = $result_cj->fetchAll();
+$cj_select = "SELECT id_cj, razao_social from comissao_jogos";
+$result_cj = $con->prepare($cj_select);
+$result_cj->execute();
+
 
 ?>
 
 <!DOCTYPE html>
-<html >
+<html>
 <head>
 	
 	<meta charset="UTF-8">
@@ -141,9 +142,15 @@ $rows = $result_cj->fetchAll();
 	          
 	          		<div class="field-wrap">
 	            		<label>
-	              			<?php print_r($rows)?> Comissão de Jogos<span class="req">*</span>
+	              			Comissão de Jogos<span class="req">*</span>
 	            		</label>
-	            		<input type="text" name="cjReg" required autocomplete="off"/>
+	            		<select name="cjSelect">
+	            			<?php
+	            				while ($comissao = $result_cj->fetch(PDO::FETCH_ASSOC)) {
+	            					?><option value="<?php echo $comissao['id_cj'] ?>"><?php echo $comissao['razao_social'] ?></option><?php
+	            				}
+	            			?>
+	            		</select>
 	          		</div>
 	          		
 
@@ -175,6 +182,13 @@ $rows = $result_cj->fetchAll();
 			        	<input type="text" name="ruaReg" required autocomplete="off"/>
 			        </div>
 
+			        <div class="field-wrap">
+			            <label>
+			            	Estado<span class="req">*</span>
+			        	</label>
+			        	<input type="text" name="estadoReg" required autocomplete="off"/>
+			        </div>
+			        
 	          		<button type="submit" class="button button-block" name="signupSubmit" value="Signup"/>Cadastrar</button>
 	          
 	          	</form>

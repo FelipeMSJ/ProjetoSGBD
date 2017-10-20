@@ -26,7 +26,7 @@ $result_stmt_cliente = $con->prepare("INSERT INTO cliente (cpf, nome, telefone, 
 $result_stmt_cliente->bindParam(':cpfReg', $cpf, PDO::PARAM_STR);
 $result_stmt_cliente->bindParam(':nomeReg', $nome, PDO::PARAM_STR);
 $result_stmt_cliente->bindParam(':telefoneReg', $telefone, PDO::PARAM_STR);
-$result_stmt_cliente->bindParam(':fk_endereco', $fk_endereco, PDO::PARAM_STR);
+$result_stmt_cliente->bindParam(':fk_endereco', $fk_endereco, PDO::PARAM_INT);
 $result_cliente = $result_stmt_cliente->execute();
 
 if($result_endereco && $result_cliente){
