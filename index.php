@@ -1,6 +1,11 @@
 <?php
 include_once("php/conectardb.php");
 
+$con = getDB();
+$cj_select = "SELECT razao_social from comissao_jogos";
+$result_cj = $con->query($cj_select);
+$rows = $result_cj->fetchAll();
+
 ?>
 
 <!DOCTYPE html>
@@ -136,7 +141,7 @@ include_once("php/conectardb.php");
 	          
 	          		<div class="field-wrap">
 	            		<label>
-	              			Comissão de Jogos<span class="req">*</span>
+	              			<?php print_r($rows)?> Comissão de Jogos<span class="req">*</span>
 	            		</label>
 	            		<input type="text" name="cjReg" required autocomplete="off"/>
 	          		</div>
