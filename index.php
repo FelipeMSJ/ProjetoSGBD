@@ -33,7 +33,7 @@ include_once("php/conectardb.php");
         			<li class="tab"><a href="#cassino">Cassino</a></li>
         			<li class="tab"><a href="#cj">Comissão de Jogos</a></li>
       			</ul>
-	        	<form action="php/userClass.php" method="POST" name="signup">
+	        	<form action="php/addCliente.php" method="POST" name="signup">
 	          		
 		        	<div class="field-wrap">
 		            	<label>
@@ -103,7 +103,7 @@ include_once("php/conectardb.php");
         			<li class="tab"><a href="#cassino">Cassino</a></li>
         			<li class="tab"><a href="#cj">Comissão de Jogos</a></li>
       			</ul>
-	        	<form action="" method="post" name="signup">
+	        	<form action="php/addCJ.php" method="POST" name="signup">
 	          
 	            	<div class="field-wrap">
 	            		<label>
@@ -125,7 +125,7 @@ include_once("php/conectardb.php");
         			<li class="tab"><a href="#cassino">Cassino</a></li>
         			<li class="tab"><a href="#cj">Comissão de Jogos</a></li>
       			</ul>
-	        	<form action="" method="post" name="signup">
+	        	<form action="php/addCassino" method="post" name="signup">
 	          
 	            	<div class="field-wrap">
 	            		<label>
