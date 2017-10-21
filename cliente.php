@@ -2,9 +2,9 @@
 include_once("php/conectardb.php");
 
 $con = getDB();
-$cj_select = "SELECT id_cj, razao_social from comissao_jogos";
-$result_cj = $con->prepare($cj_select);
-$result_cj->execute();
+$view_select = "SELECT * from view1";
+$result_view = $con->prepare($view_select);
+$result_view->execute();
 
 
 ?>
@@ -18,6 +18,7 @@ $result_cj->execute();
   	<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 	<link rel="stylesheet" href="css/style_login.css">
+	<link rel="stylesheet" href="css/tabela.css">
 </head>
 
 <body>
@@ -67,15 +68,33 @@ $result_cj->execute();
 
 	        <div id="visualizar">   
 	        	<h1>Apostas Realizadas</h1>
-	        	<form action="" name="visAposta">
-	          
-	            	<div class="field-wrap">
-	            		<label>
-	            			Nome<span class="req">*</span>
-	            		</label>
-	          		</div>
-	          	</form>
-
+	     		<div class="field-wrap">
+     				<table class="flat-table">
+	    				<thead>
+	    					<tr>
+		    					<th>Valor Apostado (R$)</th>
+		    					<th>Hora da Aposta</th>
+		    					<th>Número da Mesa</th>
+		    					<th>Nome do Jogo</th>
+		    				</tr>
+	    				</thead>
+	    				
+	    				<tbody>
+	    					<?php
+		        				while ($view = $result_view->fetch(PDO::FETCH_ASSOC)) {
+		        					?><tr>
+		        						<td><?php echo $view['VALOR_APOSTA']; ?> </td>
+		        						<td><?php echo $view['DATA_HORA_APOSTA']; ?> </td>
+		        						<td><?php echo $view['ID_MESA']; ?> </td>
+		        						<td><?php echo $view['NOME']; ?> </td>
+		        					</tr><?php
+		        				}
+		        			?>
+	    				</tbody>
+	        				
+	    			</table>
+	     		</div>
+    			
 	        </div> <!-- cassino -->
         
       	</div><!-- tab-content -->
