@@ -75,7 +75,7 @@ $result_view->execute();
 		    					<th>Valor Apostado (R$)</th>
 		    					<th>Hora da Aposta</th>
 		    					<th>Número da Mesa</th>
-		    					<th>Nome do Jogo</th>
+		    					<th>Jogo</th>
 		    				</tr>
 	    				</thead>
 	    				
