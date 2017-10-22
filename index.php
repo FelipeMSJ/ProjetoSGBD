@@ -26,12 +26,41 @@ $result_cj->execute();
   		<ul class="tab-group">
         	<li class="tab active"><a href="#cliente">Cadastrar</a></li>
         	<li class="tab"><a href="#login">Conectar</a></li>
+        	<li class="tab"><a href="#comissao">Comissão</a></li>
       	</ul>
+		
+		<!--Comissão -->
+		<div class="tab-content">
+			<div id ="comissao">
+				<form action="php/addFicha.php" method="POST" name="signup">
+					<h1>Adicionar Fichas de Apostas</h1>
+					<div class="field-wrap">
+			     	       <label>
+			      	      		Valor da Ficha<span class="req">*</span>
+			        		</label>
+			        		<input type="text" name="valFicha" required autocomplete="off"/>
+			    	</div>
+			    	<div class="field-wrap">
+			          	  <label>
+			            		Quantidade de Fichas<span class="req">*</span>
+			        	  </label>
+			        	<input type="text" name="qtdFichas" required autocomplete="off"/>
+			    	</div>
+			    	<div class="field-wrap">
+			          	  <label>
+			            		ID Comissão<span class="req">*</span>
+			        	  </label>
+			        	<input type="text" name="idComissao" required autocomplete="off"/>
+			    	</div>
+			    	<button type="submit" class="button button-block" name="submit" 	value="Signup"/>Adicionar
+			    	</button>
+			    </form>
+			</div>
+		</div>
+		<!--fim Comissão -->
 
-      
-      	<div class="tab-content">
 
-      		
+		<div class="tab-content">
         	<div id="cliente">   
           		<h1>Cliente</h1>
         		<ul class="tab-group">
@@ -196,8 +225,10 @@ $result_cj->execute();
 	        </div> <!-- cassino -->
         
       	</div><!-- tab-content -->
-      
+
 	</div> <!-- /form -->
+ 	
+ 	
   	<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
     <script src="js/index_login.js"></script>
