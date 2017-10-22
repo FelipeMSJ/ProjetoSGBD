@@ -1,10 +1,18 @@
 <?php
 include_once("php/conectardb.php");
+include_once('php/userClass.php');
+include_once('php/session.php');
+
 
 $con = getDB();
-$view_select = "SELECT * from view1";
+$view_select = "SELECT * from mesa";
 $result_view = $con->prepare($view_select);
 $result_view->execute();
+
+
+$view_select = "SELECT * from view1";
+$result_view2 = $con->prepare($view_select);
+$result_view2->execute();
 
 
 ?>
@@ -53,11 +61,25 @@ $result_view->execute();
 	        <div id="aposta">   
 	        	<h1>Realizar Aposta</h1>
 	        	<form action="php/realAposta.php" method="POST" name="realAposta">
+	            	
 	            	<div class="field-wrap">
 	            		<label>
-	            			Razão Social<span class="req">*</span>
+	            			Mesa<span class="req">*</span>
 	            		</label>
-	            		<input type="text" id="razao_social" name="razao_social" required autocomplete="off"/>
+	            		<select name="mesaSelect">
+	            			<?php
+	            				while ($mesa = $result_view->fetch(PDO::FETCH_ASSOC)) {
+	            					?><option value="<?php echo $mesa['ID_MESA'] ?>"><?php echo $mesa['ID_MESA'] ?></option><?php
+	            				}
+	            			?>
+	            		</select>
+	          		</div>
+
+	            	<div class="field-wrap">
+	            		<label>
+	            			Valor da Aposta<span class="req">*</span>
+	            		</label>
+	            		<input type="text" id="valor_aposta" name="valor_aposta" />
 	          		</div>
 	          
 	          		<button type="submit" class="button button-block" name="signupCJ" value="Signup"/>Realizar Aposta</button>
@@ -81,11 +103,11 @@ $result_view->execute();
 	    				
 	    				<tbody>
 	    					<?php
-		        				while ($view = $result_view->fetch(PDO::FETCH_ASSOC)) {
+		        				while ($view = $result_view2->fetch(PDO::FETCH_ASSOC)) {
 		        					?><tr>
 		        						<td><?php echo $view['VALOR_APOSTA']; ?> </td>
 		        						<td><?php echo $view['DATA_HORA_APOSTA']; ?> </td>
-		        						<td><?php echo $view['ID_MESA']; ?> </td>
+		        						<td><?php echo $view['ID_MESA']; ?></td>
 		        						<td><?php echo $view['NOME']; ?> </td>
 		        					</tr><?php
 		        				}

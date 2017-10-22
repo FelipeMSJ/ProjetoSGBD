@@ -1,19 +1,18 @@
 <?php
 class userClass{
 /* User Login */
-	public function userLogin($email,$password){
+
+	public function userLoginCliente($cpf){
 
 		$con = getDB();
-		$hash_password= hash('sha256', $password);
-		$stmt = $con->prepare("SELECT uid FROM users WHERE  email=:email AND  password=:hash_password");  
-		$stmt->bindParam("email", $email,PDO::PARAM_STR) ;
-		$stmt->bindParam("hash_password", $hash_password,PDO::PARAM_STR) ;
+		$stmt = $con->prepare("SELECT cpf FROM cliente WHERE cpf=:cpf");  
+		$stmt->bindParam(":cpf", $cpf,PDO::PARAM_STR) ;
 		$stmt->execute();
 		$count=$stmt->rowCount();
 		$data=$stmt->fetch(PDO::FETCH_OBJ);
 		$con = null;
 		if($count){
-			$_SESSION['uid']=$data->uid;
+			$_SESSION['cpf']=$data->uid;
 			return true;
 		}
 		else {
@@ -21,22 +20,40 @@ class userClass{
 		}    
 	}
 
-	public function cadastroCJ($razao_social){
-		try{
-			$con = getDB();
-			$result_stmt_rs = $con->prepare("INSERT INTO comissao_jogos(razao_social) VALUES (:razao_social)");
-			$result_stmt_rs->bindParam(':razao_social', $razao_social, PDO::PARAM_STR);
-			$result = $result_stmt_rs->execute();
-			if($result){
-			  echo "Comissão de Jogos adicionado com sucesso";
-			  header('Location: ../index.php');
+	public function userLoginCassino($nome){
 
-			}
+		$con = getDB();
+		$stmt = $con->prepare("SELECT nome FROM cassino WHERE nome=:nome");  
+		$stmt->bindParam("nome", $nome,PDO::PARAM_STR) ;
+		$stmt->execute();
+		$count=$stmt->rowCount();
+		$data=$stmt->fetch(PDO::FETCH_OBJ);
+		$con = null;
+		if($count){
+			$_SESSION['nome']=$data->uid;
+			return true;
+		}
+		else {
+			return false;
+		}    
+	}
 
+	public function userLoginCJ($razao_social){
+
+		$con = getDB();
+		$stmt = $con->prepare("SELECT razao_social FROM comissao_jogos WHERE razao_social=:razao_social");  
+		$stmt->bindParam("razao_social", $razao_social,PDO::PARAM_STR) ;
+		$stmt->execute();
+		$count=$stmt->rowCount();
+		$data=$stmt->fetch(PDO::FETCH_OBJ);
+		$con = null;
+		if($count){
+			$_SESSION['razao_social']=$data->uid;
+			return true;
 		}
-		catch(PDOException $e) {
-			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
-		}
+		else {
+			return false;
+		}    
 	}
 
 	/* User Registration */
@@ -71,7 +88,39 @@ class userClass{
 	}
 
 	/* User Details */
-	public function userDetails($uid){
+	public function userDetailsCliente($uid){
+		try{
+			$con = getDB();
+			$stmt = $con->prepare("SELECT cpf FROM cliente WHERE uid=:uid");  
+			$stmt->bindParam("uid", $uid,PDO::PARAM_INT);
+			$stmt->execute();
+			$data = $stmt->fetch(PDO::FETCH_OBJ);
+			return $data;
+		}
+		catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+		}
+
+	}
+
+	/* User Details */
+	public function userDetailsCassino($uid){
+		try{
+			$con = getDB();
+			$stmt = $con->prepare("SELECT email,username FROM users WHERE uid=:uid");  
+			$stmt->bindParam("uid", $uid,PDO::PARAM_INT);
+			$stmt->execute();
+			$data = $stmt->fetch(PDO::FETCH_OBJ);
+			return $data;
+		}
+		catch(PDOException $e) {
+			echo '{"error":{"text":'. $e->getMessage() .'}}'; 
+		}
+
+	}
+
+	/* User Details */
+	public function userDetailsCJ($uid){
 		try{
 			$con = getDB();
 			$stmt = $con->prepare("SELECT email,username FROM users WHERE uid=:uid");  

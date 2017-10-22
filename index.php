@@ -1,11 +1,57 @@
 <?php
 include_once("php/conectardb.php");
+include_once('php/userClass.php');
 
 $con = getDB();
 $cj_select = "SELECT id_cj, razao_social from comissao_jogos";
 $result_cj = $con->prepare($cj_select);
 $result_cj->execute();
 
+$userClass = new userClass();
+
+$errorMsgLogin='';
+
+if (!empty($_POST['loginSubmitCliente'])) {
+	$cpf=$_POST['cpf'];
+	if(strlen(trim($cpf))){
+		$uid=$userClass->userLoginCliente($cpf);
+		if($uid){
+			$url='cliente.php';
+			header("Location: $url");
+		}
+		else{
+			$errorMsgLogin="Deu ruim no login.";
+		}
+	}
+}
+
+if (!empty($_POST['loginSubmitCassino'])) {
+	$nome=$_POST['nome'];
+	if(strlen(trim($nome))){
+		$uid=$userClass->userLoginCassino($nome);
+		if($uid){
+			$url='cassino.php';
+			header("Location: $url");
+		}
+		else{
+			$errorMsgLogin="Deu ruim no login.";
+		}
+	}
+}
+
+if (!empty($_POST['loginSubmitCJ'])) {
+	$razao_social=$_POST['razao_social'];
+	if(strlen(trim($razao_social))){
+		$uid=$userClass->userLoginCJ($razao_social);
+		if($uid){
+			$url='razao_social.php';
+			header("Location: $url");
+		}
+		else{
+			$errorMsgLogin="Deu ruim no login.";
+		}
+	}
+}
 
 ?>
 
@@ -25,7 +71,7 @@ $result_cj->execute();
       	
   		<ul class="tab-group">
         	<li class="tab active"><a href="#cliente">Cadastrar</a></li>
-        	<li class="tab"><a href="#login">Conectar</a></li>
+        	<li class="tab"><a href="#loginCliente">Conectar</a></li>
       	</ul>
 
       
@@ -194,7 +240,76 @@ $result_cj->execute();
 	          	</form>
 
 	        </div> <!-- cassino -->
-        
+        	
+	        <div id="loginCliente">   
+	          	<h1>Conectar</h1>
+	          
+	          	<ul class="tab-group">
+        			<li class="tab"><a href="#loginCliente">Cliente</a></li>
+        			<li class="tab"><a href="#loginCassino">Cassino</a></li>
+        			<li class="tab"><a href="#loginCJ">Comissão de Jogos</a></li>
+      			</ul>
+	          	<form action="" method="post" name="login">
+	          
+		            <div class="field-wrap">
+			            <label>
+			              	CPF<span class="req">*</span>
+			            </label>
+			            <input type="text" name="cpf" required autocomplete="off"/>
+		          	</div>
+	          
+	          		<button class="button button-block" name="loginSubmitCliente" value="Login"/>Entrar</button>
+	          
+	          	</form>
+
+	        </div>
+
+	        <div id="loginCassino">   
+	          	<h1>Conectar</h1>
+	          
+	          	<ul class="tab-group">
+        			<li class="tab"><a href="#loginCliente">Cliente</a></li>
+        			<li class="tab"><a href="#loginCassino">Cassino</a></li>
+        			<li class="tab"><a href="#loginCJ">Comissão de Jogos</a></li>
+      			</ul>
+	          	<form action="" method="post" name="login">
+	          
+		            <div class="field-wrap">
+			            <label>
+			              	Nome<span class="req">*</span>
+			            </label>
+			            <input type="text" name="nome" required autocomplete="off"/>
+		          	</div>
+	          
+	          		<button class="button button-block" name="loginSubmitCassino" value="Login"/>Entrar</button>
+	          
+	          	</form>
+
+	        </div>
+
+	        <div id="loginCJ">   
+	          	<h1>Conectar</h1>
+	          
+	          	<ul class="tab-group">
+        			<li class="tab"><a href="#loginCliente">Cliente</a></li>
+        			<li class="tab"><a href="#loginCassino">Cassino</a></li>
+        			<li class="tab"><a href="#loginCJ">Comissão de Jogos</a></li>
+      			</ul>
+	          	<form action="" method="post" name="login">
+	          
+		            <div class="field-wrap">
+			            <label>
+			              	Razão Social<span class="req">*</span>
+			            </label>
+			            <input type="text" name="razao_social" required autocomplete="off"/>
+		          	</div>
+	          
+	          		<button class="button button-block" name="loginSubmitCJ" value="Login"/>Entrar</button>
+	          
+	          	</form>
+
+	        </div>
+
       	</div><!-- tab-content -->
       
 	</div> <!-- /form -->
