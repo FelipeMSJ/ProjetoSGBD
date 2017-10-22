@@ -2,7 +2,7 @@
 	session_start();
 
 	/* DATABASE CONFIGURATION */
-	define('host', '127.0.0.1:3307');
+	define('host', '127.0.0.1:3306');
 	define('login', 'root');
 	define('senha', '');
 	define('db', 'cassino_db');

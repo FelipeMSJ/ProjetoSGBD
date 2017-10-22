@@ -27,7 +27,85 @@ $result_cj->execute();
         	<li class="tab active"><a href="#cliente">Cadastrar</a></li>
         	<li class="tab"><a href="#login">Conectar</a></li>
         	<li class="tab"><a href="#comissao">Comissão</a></li>
+        	<li class="tab"><a href="#cass">Cassino</a></li>
       	</ul>
+      	
+      	<!--Cassino -->
+		<div class="tab-content">
+			<div id="cass">
+				<form action="php/addDealer.php" method="POST" name="signup">
+				<!--add dealer -->
+				<h1>Add Dealer</h1>
+				<ul class="tab-group">
+        			<li class="tab"><a href="#cass">Add Dealer</a></li>
+        			<li class="tab"><a href="#addFloor">Add Floorman</a></li>
+        			<li class="tab"><a href="#Func">Funcionário</a></li>
+        			<li class="tab"><a href="#mesa">Mesa</a></li>
+        			<li class="tab"><a href="#setor">Setor</a></li>
+        			<li class="tab"><a href="#jogo">Jogo</a></li>
+      			</ul>
+      			<div class="field-wrap">
+			            <label>
+			            	Nome<span class="req">*</span>
+			        	</label>
+			        	<input type="text" name="nomeDealer" required autocomplete="off"/>
+			    </div>
+      			<div class="field-wrap">
+			            <label>
+			            	ID Cassino<span class="req">*</span>
+			        	</label>
+			        	<input type="text" name="idCassino" required autocomplete="off"/>
+      			</div>
+      			<button type="submit" class="button button-block" name="submit" 	value="Signup"/>Adicionar
+      			</button>
+      			</form>
+      		</div>
+      		<!--fim add dealer -->
+      		<!--add floorman -->
+      		<div id="addFloor">
+      			<form action="php/addFloorman.php" method="POST" name="signup">
+      			<h1>Add Floorman</h1>
+				<ul class="tab-group">
+        			<li class="tab"><a href="#cass">Add Dealer</a></li>
+        			<li class="tab"><a href="#addFloor">Add Floorman</a></li>
+        			<li class="tab"><a href="#Func">Funcionário</a></li>
+        			<li class="tab"><a href="#mesa">Mesa</a></li>
+        			<li class="tab"><a href="#setor">Setor</a></li>
+        			<li class="tab"><a href="#jogo">Jogo</a></li>
+      			</ul>
+      			<div class="field-wrap">
+			            <label>
+			            	Nome<span class="req">*</span>
+			        	</label>
+			        	<input type="text" name="nomefloor" required autocomplete="off"/>
+			    </div>
+      			<div class="field-wrap">
+			            <label>
+			            	ID Cassino<span class="req">*</span>
+			        	</label>
+			        	<input type="text" name="idCassino" required autocomplete="off"/>
+      			</div>
+      			<div class="field-wrap">
+			            <label>
+			            	ID Jogo<span class="req">*</span>
+			        	</label>
+			        	<input type="text" name="idJogo" required autocomplete="off"/>
+      			</div>
+      			<div class="field-wrap">
+			            <label>
+			            	ID Setor<span class="req">*</span>
+			        	</label>
+			        	<input type="text" name="idSetor" required autocomplete="off"/>
+      			</div>
+      			<button type="submit" class="button button-block" name="submit" 	value="Signup"/>Adicionar
+      			</button>
+      			</form>
+      		</div>
+      		<!--fim add floorman-->
+			
+		</div>
+		<!--fim Cassino -->
+		
 		
 		<!--Comissão -->
 		<div class="tab-content">
@@ -58,8 +136,8 @@ $result_cj->execute();
 			</div>
 		</div>
 		<!--fim Comissão -->
-
-
+		
+		
 		<div class="tab-content">
         	<div id="cliente">   
           		<h1>Cliente</h1>
