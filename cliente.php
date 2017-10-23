@@ -22,6 +22,10 @@ $view_select3 = "SELECT * from ficha_aposta";
 $result_view3 = $con->prepare($view_select3);
 $result_view3->execute();
 
+$view_select4 = "SELECT * from ficha_aposta";
+$result_view4 = $con->prepare($view_select3);
+$result_view4->execute();
+
 
 
 ?>
@@ -62,21 +66,14 @@ $result_view3->execute();
 		            	<label>
 		                	Valor<span class="req">*</span>
 		            	</label>
-		            	<br>
-		            	<?php
-            				while ($ficha = $result_view3->fetch(PDO::FETCH_ASSOC)) {
-            					?>
-            						<p>
-		            					<input id="<?php echo $ficha['ID_FICHA_APOSTA'] ?>" name="<?php echo $ficha['ID_FICHA_APOSTA'] ?>" type="checkbox" />
-		            					<label for="<?php echo $ficha['ID_FICHA_APOSTA'] ?>" name="<?php echo $ficha['ID_FICHA_APOSTA'] ?>">
-		            						<?php echo $ficha['VALOR']?> - Quantidade Disponível: <?php echo $ficha['QUANTIDADE'] ?> 
-		            					</label> <br>
-		            						
-	            					</p>
-            					
-            					<?php
-            				}
-            			?>
+		            	<br> <br>
+		            	<select name="fichaSelect">
+	            			<?php
+	            				while ($ficha = $result_view3->fetch(PDO::FETCH_ASSOC)) {
+	            					?><option value="<?php echo $ficha['ID_FICHA_APOSTA'] ?>">R$<?php echo $ficha['VALOR']?> - Quantidade Disponível: <?php echo $ficha['QUANTIDADE'] ?></option><?php
+	            				}
+	            			?>
+	            		</select>
 		        		
 		        	</div>
 
@@ -107,7 +104,7 @@ $result_view3->execute();
 	    				
 	    				<tbody>
 	    					<?php
-		        				while ($view = $result_view2->fetch(PDO::FETCH_ASSOC)) {
+		        				while ($view = $result_view4->fetch(PDO::FETCH_ASSOC)) {
 		        					?><tr>
 		        						<td><?php echo $view['VALOR_APOSTA']; ?> </td>
 		        						<td><?php echo $view['DATA_HORA_APOSTA']; ?> </td>
