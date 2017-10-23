@@ -3,16 +3,25 @@ include_once("php/conectardb.php");
 include_once('php/userClass.php');
 include_once('php/session.php');
 
+$userClass = new userClass();
 
 $con = getDB();
-$view_select = "SELECT * from mesa";
+$view_select = "SELECT * from view2";
 $result_view = $con->prepare($view_select);
 $result_view->execute();
 
 
-$view_select = "SELECT * from view1";
-$result_view2 = $con->prepare($view_select);
+$cpf=$_SESSION['cpf'];
+
+$view_select2 = "SELECT * from view1 where CLIENTE_CPF = :cpf";
+$result_view2 = $con->prepare($view_select2);
+$result_view2->bindParam(':cpf', $cpf, PDO::PARAM_STR);
 $result_view2->execute();
+
+$view_select3 = "SELECT * from ficha_aposta";
+$result_view3 = $con->prepare($view_select3);
+$result_view3->execute();
+
 
 
 ?>
@@ -27,6 +36,7 @@ $result_view2->execute();
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 	<link rel="stylesheet" href="css/style_login.css">
 	<link rel="stylesheet" href="css/tabela.css">
+	
 </head>
 
 <body>
@@ -35,6 +45,7 @@ $result_view2->execute();
   		<ul class="tab-group">
         	<li class="tab active"><a href="#ficha">Adquirir Ficha</a></li>
         	<li class="tab"><a href="#aposta">Apostar</a></li>
+        	<li class="tab"><a href="#visFicha">Fichas Adquiridas</a></li>
         	<li class="tab"><a href="#visualizar">Visualizar Apostas</a></li>
       	</ul>
 
@@ -48,16 +59,41 @@ $result_view2->execute();
 	          		
 		        	<div class="field-wrap">
 		            	<label>
-		                	CPF<span class="req">*</span>
+		                	Valor<span class="req">*</span>
 		            	</label>
-		        		<input type="text" name="cpfReg" required autocomplete="off" />
+
+		            	<?php
+            				while ($ficha = $result_view3->fetch(PDO::FETCH_ASSOC)) {
+            					?>
+
+            					<input type="checkbox" name="valorFicha" value="<?php echo $ficha['ID_FICHA_APOSTA'] ?>" />
+            					<?php echo $ficha['VALOR']?> - Quantidade Disponível: <?php echo $ficha['QUANTIDADE'] ?> <br>
+
+            					<?php
+            				}
+            			?>
+		        		
 		        	</div>
 
-			        <button type="submit" class="button button-block" name="signupCliente" value="Signup"/>Adquirir Ficha</button>
+		        	<div class="field-wrap">
+	            		<label>
+	            			Quantidade<span class="req">*</span>
+	            		</label>
+	            		<input type="number" id="valor_aposta" name="valor_aposta" />
+	          		</div>
+
+			        <button type="submit" class="button button-block" name="adquirirFicha" value="Signup"/>Adquirir Ficha</button>
 		          
 	        	</form>
         	</div> <!-- cliente -->
-        
+        	
+        	<div id="visFicha">
+        		<h1>Fichas Adquiridas</h1>
+        		<div class="field-wrap">
+        			
+        		</div>
+        	</div>
+
 	        <div id="aposta">   
 	        	<h1>Realizar Aposta</h1>
 	        	<form action="php/realAposta.php" method="POST" name="realAposta">
@@ -69,7 +105,7 @@ $result_view2->execute();
 	            		<select name="mesaSelect">
 	            			<?php
 	            				while ($mesa = $result_view->fetch(PDO::FETCH_ASSOC)) {
-	            					?><option value="<?php echo $mesa['ID_MESA'] ?>"><?php echo $mesa['ID_MESA'] ?></option><?php
+	            					?><option value="<?php echo $mesa['ID_MESA'] ?>"><?php echo $mesa['ID_MESA'] ?> - <?php echo $mesa['NOME'] ?> </option><?php
 	            				}
 	            			?>
 	            		</select>
@@ -79,10 +115,10 @@ $result_view2->execute();
 	            		<label>
 	            			Valor da Aposta<span class="req">*</span>
 	            		</label>
-	            		<input type="text" id="valor_aposta" name="valor_aposta" />
+	            		<input type="number" id="valor_aposta" name="valor_aposta" />
 	          		</div>
 	          
-	          		<button type="submit" class="button button-block" name="signupCJ" value="Signup"/>Realizar Aposta</button>
+	          		<button type="submit" class="button button-block" name="realizarAposta" value="Signup"/>Realizar Aposta</button>
 	          
 	          	</form>
 

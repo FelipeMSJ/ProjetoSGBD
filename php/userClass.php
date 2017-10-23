@@ -12,7 +12,7 @@ class userClass{
 		$data=$stmt->fetch(PDO::FETCH_OBJ);
 		$con = null;
 		if($count){
-			$_SESSION['cpf']=$data->uid;
+			$_SESSION['cpf']=$data->cpf;
 			return true;
 		}
 		else {
@@ -30,7 +30,7 @@ class userClass{
 		$data=$stmt->fetch(PDO::FETCH_OBJ);
 		$con = null;
 		if($count){
-			$_SESSION['nome']=$data->uid;
+			$_SESSION['nome']=$data->nome;
 			return true;
 		}
 		else {
@@ -48,7 +48,7 @@ class userClass{
 		$data=$stmt->fetch(PDO::FETCH_OBJ);
 		$con = null;
 		if($count){
-			$_SESSION['razao_social']=$data->uid;
+			$_SESSION['razao_social']=$data->razao_social;
 			return true;
 		}
 		else {
