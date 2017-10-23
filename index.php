@@ -91,7 +91,7 @@ if (!empty($_POST['loginSubmitCJ'])) {
 		            	<label>
 		                	CPF<span class="req">*</span>
 		            	</label>
-		        		<input type="text" name="cpfReg" required autocomplete="off" />
+		        		<input type="number" name="cpfReg" required autocomplete="off" />
 		        	</div>
 
 			        <div class="field-wrap">
@@ -105,14 +105,14 @@ if (!empty($_POST['loginSubmitCJ'])) {
 			            <label>
 			            	Telefone<span class="req">*</span>
 			        	</label>
-			        	<input type="text" name="telefoneReg" required autocomplete="off"/>
+			        	<input type="number" name="telefoneReg" required autocomplete="off"/>
 			        </div>
 			          
 			        <div class="field-wrap">
 			            <label>
 			            	CEP<span class="req">*</span>
 			        	</label>
-			        	<input type="text" name="cepReg" required autocomplete="off"/>
+			        	<input type="number" name="cepReg" required autocomplete="off"/>
 			        </div>
 			         
 			        <div class="field-wrap">
@@ -204,7 +204,7 @@ if (!empty($_POST['loginSubmitCJ'])) {
 		            	<label>
 		                	CEP<span class="req">*</span>
 		            	</label>
-		        		<input type="text" name="cepReg" required autocomplete="off" />
+		        		<input type="number" name="cepReg" required autocomplete="off" />
 		        	</div>
 
 		        	<div class="field-wrap">
@@ -255,7 +255,7 @@ if (!empty($_POST['loginSubmitCJ'])) {
 			            <label>
 			              	CPF<span class="req">*</span>
 			            </label>
-			            <input type="text" name="cpf" required autocomplete="off"/>
+			            <input type="number" name="cpf" required autocomplete="off"/>
 		          	</div>
 	          
 	          		<button class="button button-block" name="loginSubmitCliente" value="Login"/>Entrar</button>

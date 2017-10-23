@@ -36,6 +36,7 @@ $result_view3->execute();
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 	<link rel="stylesheet" href="css/style_login.css">
 	<link rel="stylesheet" href="css/tabela.css">
+	<link rel="stylesheet" href="css/checkbox.css">
 	
 </head>
 
@@ -61,14 +62,18 @@ $result_view3->execute();
 		            	<label>
 		                	Valor<span class="req">*</span>
 		            	</label>
-
+		            	<br>
 		            	<?php
             				while ($ficha = $result_view3->fetch(PDO::FETCH_ASSOC)) {
             					?>
-
-            					<input type="checkbox" name="valorFicha" value="<?php echo $ficha['ID_FICHA_APOSTA'] ?>" />
-            					<?php echo $ficha['VALOR']?> - Quantidade Disponível: <?php echo $ficha['QUANTIDADE'] ?> <br>
-
+            						<p>
+		            					<input id="<?php echo $ficha['ID_FICHA_APOSTA'] ?>" name="<?php echo $ficha['ID_FICHA_APOSTA'] ?>" type="checkbox" />
+		            					<label for="<?php echo $ficha['ID_FICHA_APOSTA'] ?>" name="<?php echo $ficha['ID_FICHA_APOSTA'] ?>">
+		            						<?php echo $ficha['VALOR']?> - Quantidade Disponível: <?php echo $ficha['QUANTIDADE'] ?> 
+		            					</label> <br>
+		            						
+	            					</p>
+            					
             					<?php
             				}
             			?>
@@ -90,7 +95,30 @@ $result_view3->execute();
         	<div id="visFicha">
         		<h1>Fichas Adquiridas</h1>
         		<div class="field-wrap">
-        			
+        			<table class="flat-table">
+	    				<thead>
+	    					<tr>
+		    					<th>Valor Adquirido (R$)</th>
+		    					<th>Hora da Aposta</th>
+		    					<th>Número da Mesa</th>
+		    					<th>Jogo</th>
+		    				</tr>
+	    				</thead>
+	    				
+	    				<tbody>
+	    					<?php
+		        				while ($view = $result_view2->fetch(PDO::FETCH_ASSOC)) {
+		        					?><tr>
+		        						<td><?php echo $view['VALOR_APOSTA']; ?> </td>
+		        						<td><?php echo $view['DATA_HORA_APOSTA']; ?> </td>
+		        						<td><?php echo $view['ID_MESA']; ?></td>
+		        						<td><?php echo $view['NOME']; ?> </td>
+		        					</tr><?php
+		        				}
+		        			?>
+	    				</tbody>
+	        				
+	    			</table>
         		</div>
         	</div>
 
