@@ -22,7 +22,6 @@ $view_select3 = "SELECT * from ficha_aposta";
 $result_view3 = $con->prepare($view_select3);
 $result_view3->execute();
 
-//Join com ACF.VALOR_ADQUIRE, FA.VALOR, FA.QUANTIDADE, ACF.DATA_HORA_ADQUIRE, (CASSINO) C.NOME   
 $view_select4 = "SELECT * from ficha_aposta";
 $result_view4 = $con->prepare($view_select3);
 $result_view4->execute();
@@ -82,7 +81,7 @@ $result_view4->execute();
 	            		<label>
 	            			Quantidade<span class="req">*</span>
 	            		</label>
-	            		<input type="number" id="quantidade_ficha" name="quantidade_ficha" />
+	            		<input type="number" id="valor_aposta" name="valor_aposta" />
 	          		</div>
 
 			        <button type="submit" class="button button-block" name="adquirirFicha" value="Signup"/>Adquirir Ficha</button>
@@ -96,11 +95,10 @@ $result_view4->execute();
         			<table class="flat-table">
 	    				<thead>
 	    					<tr>
-		    					<th>Valor Total Adquirido (R$)</th>
-		    					<th>Valor da Ficha (R$)</th>
-		    					<th>Quantidade Comprada</th>
-		    					<th>Hora da Aquisição</th>
-		    					<th>Cassino Vinculado</th>
+		    					<th>Valor Adquirido (R$)</th>
+		    					<th>Hora da Aposta</th>
+		    					<th>Número da Mesa</th>
+		    					<th>Jogo</th>
 		    				</tr>
 	    				</thead>
 	    				
@@ -125,21 +123,6 @@ $result_view4->execute();
 	        	<h1>Realizar Aposta</h1>
 	        	<form action="php/realAposta.php" method="POST" name="realAposta">
 	            	
-	        		<div class="field-wrap">
-	        			<label>
-	        				Cassino<span class="req">*</span>
-	        			</label>
-
-	        			<select name="cassinoSelect">
-	            			<?php
-	            				while ($mesa = $result_view->fetch(PDO::FETCH_ASSOC)) {
-	            					?><option value="<?php echo $mesa['ID_MESA'] ?>"><?php echo $mesa['ID_MESA'] ?> - <?php echo $mesa['NOME'] ?> </option><?php
-	            				}
-	            			?>
-	            		</select>
-
-	        		</div>
-
 	            	<div class="field-wrap">
 	            		<label>
 	            			Mesa<span class="req">*</span>
