@@ -107,7 +107,14 @@ if (!empty($_POST['loginSubmitCJ'])) {
 			        	</label>
 			        	<input type="number" name="telefoneReg" required autocomplete="off"/>
 			        </div>
-			          
+					
+					<div class="field-wrap">
+			            <label>
+			            	Endereço<span class="req">*</span>
+			        	</label>
+			        	<input type="text" name="enderecoReg" required autocomplete="off"/>
+			        </div>
+
 			        <div class="field-wrap">
 			            <label>
 			            	CEP<span class="req">*</span>
@@ -199,7 +206,13 @@ if (!empty($_POST['loginSubmitCJ'])) {
 	            		</select>
 	          		</div>
 	          		
-
+	          		<div class="field-wrap">
+			            <label>
+			            	Endereço<span class="req">*</span>
+			        	</label>
+			        	<input type="text" name="enderecoReg" required autocomplete="off"/>
+			        </div>
+	          		
 	          		<div class="field-wrap">
 		            	<label>
 		                	CEP<span class="req">*</span>

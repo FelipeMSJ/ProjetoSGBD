@@ -7,18 +7,20 @@ $con = getDB();
 $cpf = $_POST['cpfReg'];
 $nome = $_POST['nomeReg'];
 $telefone = $_POST['telefoneReg'];
+$endereco = $_POST['enderecoReg'];
 $cep = $_POST['cepReg'];
 $bairro = $_POST['bairroReg'];
 $cidade = $_POST['cidadeReg'];
 $rua = $_POST['ruaReg'];
 $estado = $_POST['estadoReg'];
 
-$result_stmt_endereco = $con->prepare("INSERT INTO endereco (cep, bairro, cidade, rua, estado) VALUES (:cepReg, :bairroReg, :cidadeReg, :ruaReg, :estadoReg)");
+$result_stmt_endereco = $con->prepare("INSERT INTO endereco (cep, bairro, cidade, rua, estado, endereco) VALUES (:cepReg, :bairroReg, :cidadeReg, :ruaReg, :estadoReg, :enderecoReg)");
 $result_stmt_endereco->bindParam(':cepReg', $cep, PDO::PARAM_STR);
 $result_stmt_endereco->bindParam(':bairroReg', $bairro, PDO::PARAM_STR);
 $result_stmt_endereco->bindParam(':cidadeReg', $cidade, PDO::PARAM_STR);
 $result_stmt_endereco->bindParam(':ruaReg', $rua, PDO::PARAM_STR);
 $result_stmt_endereco->bindParam(':estadoReg', $estado, PDO::PARAM_STR);
+$result_stmt_endereco->bindParam(':enderecoReg', $endereco, PDO::PARAM_STR);
 $result_endereco = $result_stmt_endereco->execute();
 $fk_endereco = $con->lastInsertId();
 
