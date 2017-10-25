@@ -18,7 +18,7 @@ $view_select2 = "SELECT * from view2";
 $result_view2 = $con->prepare($view_select2);
 $result_view2->execute();
 
-$view_select3 = "SELECT * from ficha_aposta";
+$view_select3 = "SELECT F.VALOR, F.QUANTIDADE, F.ID_FICHA_APOSTA, C.NOME_CASSINO from ficha_aposta F join cassino C on CASSINO_ID_CASSINO = ID_CASSINO order by C.NOME_CASSINO";
 $result_view3 = $con->prepare($view_select3);
 $result_view3->execute();
 
@@ -68,7 +68,7 @@ $result_view4->execute();
 		            	<select name="fichaSelect">
 	            			<?php
 	            				while ($ficha = $result_view3->fetch(PDO::FETCH_ASSOC)) {
-	            					?><option value="<?php echo $ficha['ID_FICHA_APOSTA'] ?>">R$<?php echo $ficha['VALOR']?> - Quantidade Disponível: <?php echo $ficha['QUANTIDADE'] ?></option><?php
+	            					?><option value="<?php echo $ficha['ID_FICHA_APOSTA'] ?>">R$<?php echo $ficha['VALOR']?> - Quantidade Disponível: <?php echo $ficha['QUANTIDADE'] ?> - <?php echo $ficha['NOME_CASSINO'] ?></option><?php
 	            				}
 	            			?>
 	            		</select>
