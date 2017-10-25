@@ -22,7 +22,7 @@ $view_select3 = "SELECT F.VALOR, F.QUANTIDADE, F.ID_FICHA_APOSTA, C.NOME_CASSINO
 $result_view3 = $con->prepare($view_select3);
 $result_view3->execute();
 
-$view_select4 = "SELECT * from ficha_aposta";
+$view_select4 = "SELECT * from view3";
 $result_view4 = $con->prepare($view_select4);
 $result_view4->execute();
 
@@ -105,10 +105,11 @@ $result_view4->execute();
 	    					<?php
 		        				while ($view = $result_view4->fetch(PDO::FETCH_ASSOC)) {
 		        					?><tr>
-		        						<td><?php echo $view['VALOR_APOSTA']; ?> </td>
-		        						<td><?php echo $view['DATA_HORA_APOSTA']; ?> </td>
-		        						<td><?php echo $view['ID_MESA']; ?></td>
-		        						<td><?php echo $view['NOME']; ?> </td>
+		        						<td><?php echo $view['VALOR_ADQUIRE']; ?> </td>
+		        						<td><?php echo $view['VALOR']; ?> </td>
+		        						<td><?php echo $view['QUANTIDADE']; ?></td>
+		        						<td><?php echo $view['DATA_HORA_ADQUIRE']; ?> </td>
+		        						<td><?php echo $view['NOME_CASSINO']; ?> </td>
 		        					</tr><?php
 		        				}
 		        			?>
