@@ -13,7 +13,7 @@ $result_view->execute();
 
 $cpf=$_SESSION['cpf'];
 
-$view_select2 = "SELECT * from view1 where CLIENTE_CPF = :cpf";
+$view_select2 = "SELECT * from view3 where CPF = :cpf";
 $result_view2 = $con->prepare($view_select2);
 $result_view2->bindParam(':cpf', $cpf, PDO::PARAM_STR);
 $result_view2->execute();
@@ -178,6 +178,7 @@ $result_view4->execute();
 		    					<th>Hora da Aposta</th>
 		    					<th>Número da Mesa</th>
 		    					<th>Jogo</th>
+		    					<th>Cassino</th>
 		    				</tr>
 	    				</thead>
 	    				
@@ -187,8 +188,9 @@ $result_view4->execute();
 		        					?><tr>
 		        						<td><?php echo $view['VALOR_APOSTA']; ?> </td>
 		        						<td><?php echo $view['DATA_HORA_APOSTA']; ?> </td>
-		        						<td><?php echo $view['ID_MESA']; ?></td>
-		        						<td><?php echo $view['NOME']; ?> </td>
+		        						<td><?php echo $view['MESA_ID_MESA']; ?></td>
+		        						<td><?php echo $view['NOME JOGO']; ?> </td>
+		        						<td><?php echo $view['NOME CASSINO']; ?> </td>
 		        					</tr><?php
 		        				}
 		        			?>
