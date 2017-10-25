@@ -107,7 +107,7 @@ $result_view4->execute();
 		        					?><tr>
 		        						<td><?php echo $view['VALOR_ADQUIRE']; ?> </td>
 		        						<td><?php echo $view['VALOR']; ?> </td>
-		        						<td><?php echo $view['QUANTIDADE']; ?></td>
+		        						<td><?php echo $view['VALOR_ADQUIRE']/$view['VALOR']; ?></td>
 		        						<td><?php echo $view['DATA_HORA_ADQUIRE']; ?> </td>
 		        						<td><?php echo $view['NOME_CASSINO']; ?> </td>
 		        					</tr><?php
