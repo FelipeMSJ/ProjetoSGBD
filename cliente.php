@@ -1,34 +1,30 @@
 <?php
-include_once("php/conectardb.php");
+include("php/conectardb.php");
 include_once('php/userClass.php');
 include_once('php/session.php');
 
 $userClass = new userClass();
 
 $con = getDB();
-$view_select = "SELECT * from view2";
-$result_view = $con->prepare($view_select);
-$result_view->execute();
-
 
 $cpf=$_SESSION['cpf'];
 
-$view_select2 = "SELECT * from view3 where CPF = :cpf";
+$view_select1 = "SELECT * from view1 where CPF = :cpf";
+$result_view1 = $con->prepare($view_select1);
+$result_view1->bindParam(':cpf', $cpf, PDO::PARAM_STR);
+$result_view1->execute();
+
+$view_select2 = "SELECT * from view2";
 $result_view2 = $con->prepare($view_select2);
-$result_view2->bindParam(':cpf', $cpf, PDO::PARAM_STR);
 $result_view2->execute();
 
 $view_select3 = "SELECT * from ficha_aposta";
 $result_view3 = $con->prepare($view_select3);
 $result_view3->execute();
 
-
-//Join com ACF.VALOR_ADQUIRE, FA.VALOR, FA.QUANTIDADE, ACF.DATA_HORA_ADQUIRE, (CASSINO) C.NOME 
 $view_select4 = "SELECT * from ficha_aposta";
-$result_view4 = $con->prepare($view_select3);
+$result_view4 = $con->prepare($view_select4);
 $result_view4->execute();
-
-
 
 ?>
 
@@ -126,30 +122,14 @@ $result_view4->execute();
 	        	<h1>Realizar Aposta</h1>
 	        	<form action="php/realAposta.php" method="POST" name="realAposta">
 	            	
-	        		<div class="field-wrap">
-	        			<label>
-	        				Cassino<span class="req">*</span>
-	        			</label>
-
-	        			<select name="cassinoSelect">
-	            			<?php
-	            				while ($mesa = $result_view4->fetch(PDO::FETCH_ASSOC)) {
-	            					?><option value="<?php echo $mesa['ID_MESA'] ?>"><?php echo $mesa['ID_MESA'] ?> - <?php echo $mesa['NOME'] ?> </option><?php
-	            				}
-	            			?>
-	            		</select>
-
-	        		</div>
-
-
 	            	<div class="field-wrap">
 	            		<label>
-	            			Mesa<span class="req">*</span>
+	            			Mesa - Jogo - Cassino<span class="req">*</span>
 	            		</label>
 	            		<select name="mesaSelect">
 	            			<?php
-	            				while ($mesa = $result_view->fetch(PDO::FETCH_ASSOC)) {
-	            					?><option value="<?php echo $mesa['ID_MESA'] ?>"><?php echo $mesa['ID_MESA'] ?> - <?php echo $mesa['NOME'] ?> </option><?php
+	            				while ($mesa = $result_view2->fetch(PDO::FETCH_ASSOC)) {
+	            					?><option value="<?php echo $mesa['ID_MESA'] ?>"><?php echo $mesa['ID_MESA']; ?> - <?php echo $mesa['NOME_JOGO']; ?> - <?php echo $mesa['NOME_CASSINO']; ?> </option><?php
 	            				}
 	            			?>
 	            		</select>
@@ -184,7 +164,7 @@ $result_view4->execute();
 	    				
 	    				<tbody>
 	    					<?php
-		        				while ($view = $result_view2->fetch(PDO::FETCH_ASSOC)) {
+		        				while ($view = $result_view1->fetch(PDO::FETCH_ASSOC)) {
 		        					?><tr>
 		        						<td><?php echo $view['VALOR_APOSTA']; ?> </td>
 		        						<td><?php echo $view['DATA_HORA_APOSTA']; ?> </td>
